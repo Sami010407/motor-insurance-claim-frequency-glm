@@ -76,8 +76,6 @@ Together, these produced predictions much closer to the true average-claims-by-a
 | 18-year-old / 18-25 band | 0.078 | 0.157 |
 | 50-year-old / 46-55 band | 0.094 | 0.093 |
 
-![Model 1 prediction: young vs old](images/model1_prediction_young_vs_old.png)
-![Model 2 prediction: young vs old](images/model2_prediction_young_vs_old.png)
 
 ### Isolating which change actually mattered
 
@@ -93,8 +91,6 @@ driver40 <- data.frame(DrivAge = 40, AgeBand = "36-45", BonusMalus = 57.52, Regi
 | 30 | 0.043 | 0.099 | 0.087 |
 | 40 | 0.050 | 0.082 | 0.086 |
 
-![Model 1 prediction: age 30 vs 40](images/model1_prediction_age30_vs_40.png)
-![Model 2 prediction: age 30 vs 40](images/model2_prediction_age30_vs_40.png)
 
 The linear-age model predicted a notably higher claim rate for the 30-year-old, which differs from the real data, where the two ages have similar claim frequencies. The age-band model produced much closer predictions — confirming that age-banding itself was a genuine improvement, not just an artefact of the Bonus Malus correction.
 
