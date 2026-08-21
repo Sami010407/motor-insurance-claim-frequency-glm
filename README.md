@@ -103,4 +103,4 @@ With more time, I would incorporate additional predictors — such as vehicle po
 ## Files
 
 - [`claim_frequency_model.R`](claim_frequency_model.R) — full R script
-- `images/` — plots and prediction outputs referenced above
+- `images/` — supporting plot and table
