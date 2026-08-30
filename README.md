@@ -184,7 +184,7 @@ The younger driver's premium was roughly **4.25x higher**
 
 From this addition, I learnt that a Gamma distribution is well suited to modelling claim severity, how to merge and filter datasets to combine frequency and severity information, and a basic understanding of how insurance premiums are constructed from frequency and severity models.
 
-The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.15–1.65x) is likely due to the limited set of predictors used — a fuller model including vehicle and geographic risk factors would likely narrow this further.
+The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.15–1.65x) suggests a possible correlation between claim frequency and severity at the policy level, policies with more claims may tend to have smaller individual claims. Therefore, the two cannot be averaged independently and multiplied, and a more complete model would need to test and account for this dependence rather than assuming they are independent. 
 
 
 ## Files
