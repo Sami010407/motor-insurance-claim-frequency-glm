@@ -1,6 +1,7 @@
 # Motor Insurance Claim Frequency/ Pricing model (R)
 
-Update: the frequency-only model above was later extended into a full pricing model, combining a severity model with the frequency model to produce a genuine pure premium — see the [Pricing Extension](#extension-full-pricing-model-frequency--severity) section below.
+Update: the frequency-only model above was later extended into a full pricing model, combining a severity model with the frequency model to produce pure premiums — see the [Pricing Extension](#extension-full-pricing-model-frequency--severity) section below.
+
 ## Intro
 
 This project uses open-source French motor insurance data to build a simple claim frequency model in R. I used it as an opportunity to refresh my R skills and get hands-on experience with Generalised Linear Models (GLMs), the standard technique actuaries use for pricing.
