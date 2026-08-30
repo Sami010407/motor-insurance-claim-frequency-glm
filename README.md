@@ -186,6 +186,9 @@ From this addition, I learnt that a Gamma distribution is well suited to modelli
 
 The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.15–1.65x) suggests a possible correlation between claim frequency and severity at the policy level, policies with more claims may tend to have smaller individual claims. Therefore, the two cannot be averaged independently and multiplied, and a more complete model would need to test and account for this dependence rather than assuming they are independent. 
 
+UPDATE
+Investigating further, no correlation (r =0.0034, p=0.59) was found between claim frequency and claim severity. Official dataset documentation (Hugging Face) reveals a known, documented issue, the recorded ClaimNb in freMTPL2freq does not always match the actual number of claims in freMTPL2sev, affecting 9,117 of 678,013 policies. Additionally, 195 severity records have no matching policy in the frequency data. Affecting both the frequency model and the 'true' annualized benchmark, which may have contributed to the premium gap. Highlighting the limitation in my data cleaning abilities, with more experience I would investigate and reconcile these inconsistencies rather than relying on the dataset as provided. 
+
 
 ## Files
 
