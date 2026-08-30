@@ -1,5 +1,6 @@
 # Motor Insurance Claim Frequency/ Pricing model (R)
 
+Update: the frequency-only model above was later extended into a full pricing model, combining a severity model with the frequency model to produce a genuine pure premium — see the [Pricing Extension](#extension-full-pricing-model-frequency--severity) section below.
 ## Intro
 
 This project uses open-source French motor insurance data to build a simple claim frequency model in R. I used it as an opportunity to refresh my R skills and get hands-on experience with Generalised Linear Models (GLMs), the standard technique actuaries use for pricing.
@@ -98,8 +99,6 @@ The linear-age model predicted a notably higher claim rate for the 30-year-old, 
 
 From this project I learnt that a Poisson distribution was a suitable choice for modelling this data, that using a linear age term was incorrect given the true non-linear age-risk relationship, and that you should always sanity-check and question model results against real-world expectations rather than accepting them at face value.
 
-Update: the frequency-only model above was later extended into a full pricing model, combining a severity model with the frequency model to produce a genuine pure premium — see the #extension-full-pricing-model-frequency--severity below.
-
 With more time, I would incorporate additional predictors — such as vehicle power or regional population density — to further refine the model.
 
 ## Extension: Full Pricing Model (Frequency × Severity)
@@ -187,7 +186,7 @@ The remaining gap between predicted premiums and actual annualised claims cost (
 ## Files
 
 - [`claim_frequency_model.R`](claim_frequency_model.R) — full R script
-- [`pricing_model.R`](pricing_model.R) - full R script
+- [`Pricing_model.R`](pricing_model.R) - full R script
 - `images/` — supporting plot and table
 
 
