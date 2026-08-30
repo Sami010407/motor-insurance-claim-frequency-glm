@@ -168,8 +168,6 @@ This was validated against the actual annualised claims cost per age band.
 
 The model consistently overpredicted, by roughly **1.25x–1.75x** across age bands, with the gap widening slightly at older ages.
 
-### A Concrete Example
-
 Using the same young (18-25, typical Bonus Malus) and older (46-55, typical Bonus Malus) driver profiles from the frequency model, the predicted pure premiums were:
 
 | Driver | Predicted Pure Premium |
