@@ -186,7 +186,7 @@ The remaining gap between predicted premiums and actual annualised claims cost (
 ## Files
 
 - [`claim_frequency_model.R`](claim_frequency_model.R) — full R script
-- [`Pricing_model.R`](pricing_model.R) - full R script
+- [`Pricing_model.R`](Pricing_model.R) - full R script
 - `images/` — supporting plot and table
 
 
