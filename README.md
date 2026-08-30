@@ -134,7 +134,7 @@ sev_model <- glm(
 
 The only statistically significant predictor of claim severity was `AgeBand`. All age bands from 26-35 onward showed significantly lower expected claim amounts than the 18-25 baseline, suggesting that when younger drivers do have an accident, it tends to be more severe than for other age groups.
 
-![Q-Q plot of severity model residuals](images/qq.png)
+![Q-Q plot of severity model residuals](images/qq_plot.png)
 The Q-Q plot showed that a gamma distribution was a suitable fit for the bulk of claims, but a clear upward deviation at the upper tail suggests the largest claims were more extreme than the Gamma distribution alone would predict. This suggests a more sophisticated model, such as modelling large claims separately from typical claims, could improve the tail fit. 
 
 ### Combining Both Models: Pure Premium
