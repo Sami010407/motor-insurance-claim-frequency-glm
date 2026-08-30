@@ -151,40 +151,40 @@ Exposure was set to 1 for all policies when predicting, so premiums are calculat
 
 | AgeBand | Predicted Pure Premium |
 |---|---|
-| 18-25 | £951.61 |
-| 26-35 | £221.80 |
-| 36-45 | £202.15 |
-| 46-55 | £215.97 |
-| 56-65 | £191.94 |
-| 66+ | £248.47 |
+| 18-25 | £872.55 |
+| 26-35 | £208.38 |
+| 36-45 | £191.29 |
+| 46-55 | £202.18 |
+| 56-65 | £180.07 |
+| 66+ | £233.47 |
 
 This was validated against the actual annualised claims cost per age band.
 
 | AgeBand | Actual Annualised Claim Cost |
 |---|---|
-| 18-25 | £758.40 |
-| 26-35 | £153.14 |
-| 36-45 | £138.18 |
-| 46-55 | £138.08 |
-| 56-65 | £121.05 |
-| 66+ | £141.93 |
+| 18-25 | £753.48 |
+| 26-35 | £152.73 |
+| 36-45 | £137.84 |
+| 46-55 | £137.69 |
+| 56-65 | £120.75 |
+| 66+ | £141.55 |
 
-The model consistently overpredicted, by roughly **1.25x–1.75x** across age bands, with the gap widening slightly at older ages.
+The model consistently overpredicted, by roughly **1.15x–1.65x** across age bands, with the gap widening slightly at older ages.
 
 Using the same young (18-25, typical Bonus Malus) and older (46-55, typical Bonus Malus) driver profiles from the frequency model, the predicted pure premiums were:
 
 | Driver | Predicted Pure Premium |
 |---|---|
-| 18-25 year old | £905.70 |
-| 46-55 year old | £207.91 |
+| 18-25 year old | £859.94 |
+| 46-55 year old | £202.52 |
 
-The younger driver's premium was roughly **4.4x higher**, driven by both higher predicted claim frequency and higher predicted claim severity compounding together.
+The younger driver's premium was roughly **4.25x higher**
 
 ### Conclusions & Limitations (Pricing Extension)
 
 From this addition, I learnt that a Gamma distribution is well suited to modelling claim severity, how to merge and filter datasets to combine frequency and severity information, and a basic understanding of how insurance premiums are constructed from frequency and severity models.
 
-The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.25–1.75x) is likely due to the limited set of predictors used — a fuller model including vehicle and geographic risk factors would likely narrow this further.
+The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.15–1.65x) is likely due to the limited set of predictors used — a fuller model including vehicle and geographic risk factors would likely narrow this further.
 
 
 ## Files
