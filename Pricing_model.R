@@ -15,12 +15,8 @@ summary(sev_data$ClaimAmount)
 # Check how many times the same policy appears
 table(table(sev_data$IDpol))
 
-# Merge policies that have had multiple claims so they only have one row in the table 
-sev_summed <- aggregate(ClaimAmount ~ IDpol, data = sev_data, FUN = sum)
-nrow(sev_summed)
-
 # Merge claim frequency and claim severity data 
-data_merged <- merge(data, sev_summed, by = "IDpol", all.x = TRUE)
+data_merged <- merge(data, sev_data, by = "IDpol", all.x = TRUE)
 
 # Change any claim amounts from na to 0 
 data_merged$ClaimAmount[is.na(data_merged$ClaimAmount)] <- 0
@@ -64,7 +60,7 @@ pred_freq <- predict(model2, newdata = pricing_data,type="response")
 # Predict severity
 pred_sev <- predict(sev_model, newdata= pricing_data, type= "response")
 
-# Predict premiums and appended them to the table
+# Predict premiums and append them to the table
 pricing_data$PurePremium <- pred_freq * pred_sev
 
 # Predicted average premium by age band 
