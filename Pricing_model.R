@@ -48,6 +48,9 @@ sev_model <- glm(
   data = claims_only
 )
 
+# Q-Q plot to see how good of a fit the glm is
+plot(sev_model, which = 2)
+
 # Check coefficients to interpret each predictor's effect on claim severity
 summary(sev_model)
 
