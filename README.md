@@ -155,7 +155,7 @@ Exposure was set to 1 for all policies when predicting, so premiums are calculat
 | 56-65 | £191.94 |
 | 66+ | £248.47 |
 
-This was validated against the actual annualised claims cost per age band. An initial validation attempt mistakenly compared predictions against a claims average calculated using an overwritten exposure column, producing a misleadingly large gap; correcting this to use each policy's true exposure gave a fairer comparison:
+This was validated against the actual annualised claims cost per age band.
 
 | AgeBand | Actual Annualised Claim Cost |
 |---|---|
