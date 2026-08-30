@@ -98,9 +98,98 @@ The linear-age model predicted a notably higher claim rate for the 30-year-old, 
 
 From this project I learnt that a Poisson distribution was a suitable choice for modelling this data, that using a linear age term was incorrect given the true non-linear age-risk relationship, and that you should always sanity-check and question model results against real-world expectations rather than accepting them at face value.
 
+Update: the frequency-only model above was later extended into a full pricing model, combining a severity model with the frequency model to produce a genuine pure premium — see the #extension-full-pricing-model-frequency--severity below.
+
 With more time, I would incorporate additional predictors — such as vehicle power or regional population density — to further refine the model.
+
+## Extension: Full Pricing Model (Frequency × Severity)
+
+### Intro
+
+This extension builds on the original frequency model to address a limitation noted earlier — the absence of a severity model needed for a genuine pure premium. It further develops my understanding of R and GLMs, building directly on the findings from the frequency model above.
+
+### Data
+
+The severity dataset, `freMTPL2sev`, contains claim amounts for 26,639 motor third-party liability claims — far fewer than the 677,991 policies in the frequency dataset, since it only includes policies that actually claimed (consistent with the earlier finding that only ~5% of policies claimed at all). Each claim links back to a policy via a shared `IDpol` column.
+
+**Data source:** available from OpenML: https://www.openml.org/search?type=data&id=41215
+
+Download the file and update the file path in `pricing_model.R` to match its location on your machine.
+
+### Findings
+
+75% of claims were €1,228.10 or below, while the mean claim amount was €2,278.50 — dragged up by a small number of very large, genuine claims (up to ≈€4.1 million). The majority of policies that claimed did so only once (23,571 policies), with very few claiming more than 3 times in the year.
+
+### Severity Model
+
+Since claim amounts are continuous, positively skewed, and always greater than zero, a Gamma GLM was used, with the same predictors as the age-banded frequency model: driver age band, Bonus Malus (driving history), and region.
+
+```r
+sev_model <- glm(
+  ClaimAmount ~ AgeBand + BonusMalus + Region,
+  family = Gamma(link = "log"),
+  data = claims_only
+)
+```
+
+The only statistically significant predictor of claim severity was `AgeBand`. All age bands from 26-35 onward showed significantly lower expected claim amounts than the 18-25 baseline, suggesting that when younger drivers do have an accident, it tends to be more severe than for other age groups.
+
+### Combining Both Models: Pure Premium
+
+Using both models together, a pure premium can be calculated as:
+
+```
+Pure Premium = Predicted Frequency × Predicted Severity
+```
+
+Exposure was set to 1 for all policies when predicting, so premiums are calculated on a fair, annual basis.
+
+**Predicted pure premium by age band:**
+
+| AgeBand | Predicted Pure Premium |
+|---|---|
+| 18-25 | £951.61 |
+| 26-35 | £221.80 |
+| 36-45 | £202.15 |
+| 46-55 | £215.97 |
+| 56-65 | £191.94 |
+| 66+ | £248.47 |
+
+This was validated against the actual annualised claims cost per age band. An initial validation attempt mistakenly compared predictions against a claims average calculated using an overwritten exposure column, producing a misleadingly large gap; correcting this to use each policy's true exposure gave a fairer comparison:
+
+| AgeBand | Actual Annualised Claim Cost |
+|---|---|
+| 18-25 | £758.40 |
+| 26-35 | £153.14 |
+| 36-45 | £138.18 |
+| 46-55 | £138.08 |
+| 56-65 | £121.05 |
+| 66+ | £141.93 |
+
+The model consistently overpredicted, by roughly **1.25x–1.75x** across age bands, with the gap widening slightly at older ages.
+
+### A Concrete Example
+
+Using the same young (18-25, typical Bonus Malus) and older (46-55, typical Bonus Malus) driver profiles from the frequency model, the predicted pure premiums were:
+
+| Driver | Predicted Pure Premium |
+|---|---|
+| 18-25 year old | £905.70 |
+| 46-55 year old | £207.91 |
+
+The younger driver's premium was roughly **4.4x higher**, driven by both higher predicted claim frequency and higher predicted claim severity compounding together.
+
+### Conclusions & Limitations (Pricing Extension)
+
+From this addition, I learnt that a Gamma distribution is well suited to modelling claim severity, how to merge and filter datasets to combine frequency and severity information, and a basic understanding of how insurance premiums are constructed from frequency and severity models.
+
+The remaining gap between predicted premiums and actual annualised claims cost (roughly 1.25–1.75x) is likely due to the limited set of predictors used — a fuller model including vehicle and geographic risk factors would likely narrow this further.
+
 
 ## Files
 
 - [`claim_frequency_model.R`](claim_frequency_model.R) — full R script
+- [`pricing_model.R`](pricing_model.R) - full R script
 - `images/` — supporting plot and table
+
+
