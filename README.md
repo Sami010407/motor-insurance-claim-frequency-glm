@@ -1,4 +1,4 @@
-# Motor Insurance Claim Frequency Model (R)
+# Motor Insurance Claim Frequency/ Pricing model (R)
 
 ## Intro
 
